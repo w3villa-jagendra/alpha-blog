@@ -11,6 +11,12 @@
   </head>
 
   <body>
-    <%= yield %>
+  
+  <% if notice %>
+  <div id="flash-notice" class="flash flash-notice">
+    <%= notice %>
+  </div>
+<% end %>
+<%= yield %>
   </body>
 </html>
