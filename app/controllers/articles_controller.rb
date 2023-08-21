@@ -11,19 +11,32 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])  
+  end   
+
   def create
     @article = Article.new(params.require(:article).permit(:title, :description))
       
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      flash[:notice] = 'Article was successfully created.'
+      redirect_to @article 
     else
       redirect_to new_article_path, notice:  @article.errors.full_messages
       # flash.now[:alert] = 'Article could not be saved.'
-      # render 'new'
+      render 'new'
     end
   end
   
-  
+  def update
+    @article = Article.find(params[:id])  
+    if  @article.update(params.require(:article).permit(:title, :description))
+    flash[:notice] = "Article was Updated Successfully!!"
+    redirect_to @article
+   else
+    render 'edit'
+   end 
+  end  
 
   # private
 
