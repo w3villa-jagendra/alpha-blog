@@ -13,3 +13,43 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+ .navbar{
+    background-color: black;
+ }
+
+ .navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    /* background-color: grey !important; */
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: box-shadow .15s ease-in-out;
+}
+
+#jumbo{
+   background-image: url("retrosupply-jLwVAUtLOAQ-unsplash.jpg");
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size:cover;
+   font-size: xx-large;
+   color: rgb(99, 22, 22);
+   height: 500px;
+   font-weight: bold;
+}
+
+
+
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   /* background-color: red; */
+   color: white;
+   text-align: center;
+ }
