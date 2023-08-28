@@ -1,8 +1,23 @@
-<h1> Showing Article Details </h1>
+<h1 class="text-center"> Showing Article Details </h1>
 
-<p> <strong>Title:</strong><%= @article.title%></p>
-<p> <strong>Descripiton:</strong><%= @article.description%></p> 
+<div class= "container  ">
+    <div class= "row justify-content-center">
+        <div col-md-8>
+            <div class="card text-center">
+                <div class="card-header">
+                    <%=  @article.user.username %> 
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%= @article.title%></h5>
+                    <p class="card-text"><%= @article.description%></p>
+                    <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-outline-info" %>
+                    <%= link_to 'Article List', articles_path, class:"btn btn-outline-success" %> 
+                </div>
+                <div class="card-footer text-muted">
+                    <small> Created <%= time_ago_in_words(@article.created_at)%> ago, Edited <%= time_ago_in_words( @article.updated_at)%> ago</small>
 
-<%= link_to 'Edit', edit_article_path(@article)%> |
-
-<%= link_to 'Return to Article Listing', articles_path %> 
+                </div>
+            </div>
+        </div> 
+    </div>   
+</div>
