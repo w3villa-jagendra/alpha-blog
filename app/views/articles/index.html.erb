@@ -1,8 +1,7 @@
 
   <h1 class= "text-center mt-4">Articles List</h1>
 
-   
- 
+
  <%= render 'article' %>
 
 
@@ -10,4 +9,9 @@
    <div class="col-2">
    <%= link_to 'Create New Article',  new_article_path, class: "btn btn-primary" %>
    </div>
+  </div>
+
+  <div class="flickr_pagination m-5">
+   
+    <%= will_paginate @articles, :container => false %>
   </div>
