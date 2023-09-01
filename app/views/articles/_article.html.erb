@@ -5,7 +5,9 @@
            <% @articles.each do |item| %>
           <div class="card text-center shadow mb-4 bg-white rounded ">
             <div class="card-header font-italic">
-               <%= item.user.username%>
+               <% if item.user%>
+               <%= link_to item.user.username, user_path(item.user)%>
+               <% end%>
             </div>
             <div class="card-body">
                   <h5 class="card-title"><%= link_to item.title, articles_path(item), class: "text-success" %></h5>
