@@ -1,0 +1,33 @@
+<h1  class= "text-center mt-4"> Alpha Bloggers</h1>
+
+
+
+  <div class= "container">
+
+      <div class= "row justify-content-center" >
+        <div class= "col-8 mt-4">
+           <% @users.each do |user| %>
+          <div class="card text-center shadow mb-4 bg-white rounded ">
+            <div class="card-header font-italic">
+               <%= link_to user.username, user_path(user)%>
+            </div>
+            <div class="card-body"  >
+                  <h5 class="card-title">
+                  <%= link_to gravarat_for(user, size: 150), user %></h5>
+                  <p class="card-text"> <td><%= pluralize(user.articles.count, "article") %></td></p>
+                  <%# <a href="#" class="btn btn-outline-success">View</a> %>
+                 <%= link_to 'View Profile', user, class: "btn btn-outline-success" %>
+                 <%= link_to 'Edit Profile', edit_user_path(user), class:"btn btn-outline-info" %>
+                
+
+              
+            </div>
+            <div class="card-footer text-muted">
+              <small> Joined <%= time_ago_in_words(user.created_at)%> ago</small>
+
+            </div>
+          </div>
+         <%end%>
+        </div>
+     </div>
+  </div>
