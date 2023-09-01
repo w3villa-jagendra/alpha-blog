@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = 'Article was successfully created.'
       redirect_to @article 
     else
-      redirect_to new_article_path, notice:  @article.errors.full_messages
+      # redirect_to new_article_path, notice:  @article.errors.full_messages
       # flash.now[:alert] = 'Article could not be saved.'
       render 'new'
     end
