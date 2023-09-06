@@ -11,8 +11,10 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= @article.title%></h5>
                     <p class="card-text"><%= @article.description%></p>
+                    <% if logged_in? && (@article.user == current_user || current_user.admin?)%>
                     <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-outline-info" %>
-                    <%= link_to 'Article List', articles_path, class:"btn btn-outline-success" %> 
+                    <%= link_to "Delete", article_path(@article), method: :delete,  data: { turbo_method: :delete }, class: "btn btn-outline-danger", 'data-turbolinks': 'false' %>
+                    <% end %>  
                 </div>
                 <div class="card-footer text-muted">
                     <small> Created <%= time_ago_in_words(@article.created_at)%> ago, Edited <%= time_ago_in_words( @article.updated_at)%> ago</small>

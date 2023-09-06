@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :required_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 3)
@@ -20,14 +21,12 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # @article.user = User.first
-      
+    @article.user = current_user # Associate the article with the current user
+  
     if @article.save
       flash[:notice] = 'Article was successfully created.'
-      redirect_to @article 
+      redirect_to @article
     else
-      # redirect_to new_article_path, notice:  @article.errors.full_messages
-      # flash.now[:alert] = 'Article could not be saved.'
       render 'new'
     end
   end
@@ -55,6 +54,14 @@ class ArticlesController < ApplicationController
   end
   
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description , :user_id)
   end  
+
+  
+  def require_same_user
+    if current_user != @article.user && !current_user.admin?
+      flash[:alert] = "You don't have rights to edit or delete this article"
+      redirect_to @article 
+    end
+  end
 end
